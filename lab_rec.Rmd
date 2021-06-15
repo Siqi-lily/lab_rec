@@ -1,0 +1,37 @@
+---
+title: "lab_rec"
+author: "Siqi Li"
+date: "6/15/2021"
+output: html_document
+---
+```{r}
+library(listviewer)
+library(rvest)    
+library(dplyr)     
+library(tidyverse)     
+library(repurrrsive)
+listviewer::jsonedit(gh_users)
+```
+1,
+a)nested list is a list in a list. It show as an element in another list.
+b)&d)It is a nested list. There are 6 list in the first list called array. And in each list contain 30 different list which inclued 68 elements. By using nested list we could clearly know what is in the list and show different element.
+```{r}
+listviewer::jsonedit(gh_repos)
+```
+c)We use code to make the data in gh_repos become to a tibble. It show us that there are 6 list in it and each list contains different amount of elements. 
+```{r}
+repos <- tibble(repo = gh_repos)
+repos
+```
+
+e)
+```{r}
+tibble(repo = gh_repos)%>%
+  unnest_auto(repo)%>%
+  unnest_auto(repo) -> new
+new
+```
+
+
+
+
